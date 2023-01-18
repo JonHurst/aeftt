@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <meta charset='UTF-8'/>
+    <title>Testcase</title>
+    <script>
+let heading = 0;
+
+function update() {
+    const tick_group1 = document.getElementById("ndview-ticks1");
+    const tick_group2 = document.getElementById("ndview-ticks2");
+    heading += 1;
+    tick_group1.setAttribute("transform", `rotate(${-heading/10})`);
+    tick_group2.setAttribute("transform", `rotate(${-heading/10})`);
+    window.requestAnimationFrame(update);
+}
+
+window.onload = () => window.requestAnimationFrame(update);;
+    </script>
+  </head>
+  <body style="background-color: black;">
+    <div id="ndview1">
+      <svg version="1.1" width="30rem" height="30rem" viewbox="-1000 -1000 2000 2000" xmlns="http://www.w3.org/2000/svg">
+        <g id="ndview-ticks1" stroke="white" fill="none" stroke-width="50">
+          <line x1="0" x2="0" y1="-1000" y2="-900"/>
+          <line x1="1000" x2="900" y1="0" y2="0"/>
+          <line x1="0" x2="0" y1="1000" y2="900"/>
+          <line x1="-1000" x2="-900" y1="0" y2="0"/>
+        </g>
+      </svg>
+    </div>
+    <div id="ndview2">
+      <svg version="1.1" width="30rem" height="30rem" viewbox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g id="ndview-ticks2" stroke="white" fill="none" stroke-width="5">
+          <line x1="0" x2="0" y1="-100" y2="-90"/>
+          <line x1="100" x2="90" y1="0" y2="0"/>
+          <line x1="0" x2="0" y1="100" y2="90"/>
+          <line x1="-100" x2="-90" y1="0" y2="0"/>
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>

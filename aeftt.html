@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <meta charset='UTF-8'/>
+    <title>All Engine Fail Training Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <link rel="apple-touch-icon" href="icon-180x180.png"/>
+    <link rel="icon" href="icon-192.png"/>
+    <link rel="icon" href="icon.svg" type="image/svg+xml"/>
+    <link rel="manifest" href="aeftt.webmanifest" crossorigin="use-credentials"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <script src="script.js" type="module"></script>
+  </head>
+  <body>
+    <div id="measure" class="measure"></div>
+    <div id="grid" class="grid grid--main">
+
+      <!-- tour -->
+      <div id="tour" class="tour hidden">
+        <div id="tour-msgbox" class="tour-msgbox">
+          <div id="tour-msg-0" class = "tour-msg">
+            <h2>Licensing</h2>
+            <p>This software is released under the terms of the <a
+            href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License
+            v3.0</a>.</p>
+
+            <p>In particular, please note the terms of clause 15, “Disclaimer of Warranty” and
+            clause 16, “Limitation of Liability”.</p>
+
+          </div>
+          <div id="tour-msg-0a" class="tour-msg disclaimer">
+            <h2>Disclaimer</h2>
+
+            <p>This simulation is <b>not official</b> in any way. I have released it publicly
+            because I found it useful as a tool for exploring energy management strategy and I hope
+            that others may similarly benefit. <span style="color:red;"><b>Use it entirely at your
+            own risk</b></span>.</p>
+
+            <p>Please note the discussion concerning the limitations of the model in the <a
+            href="https://hursts.org.uk/aeftt/help/background.html">Background Information</a>
+            document. This document is also available from the main menu.</p>
+
+            <p>You are <b>strongly</b> advised to test the validity of any strategy you develop
+            using this tool in a certified flight simultator.</p>
+          </div>
+          <div id="tour-msg-1" class="tour-msg">
+            <h2>Map</h2>
+            <ul>
+              <li>The yellow aircraft symbol at the centre of the map is your position.</li>
+              <li>The red circle is centred on the runway aiming point and has a 300m radius.</li>
+            </ul>
+            <p>Your task is to put the former inside the latter at the optimal moment.</p>
+            <ul>
+              <li>The dashed blue line is an extended centre line.</li>
+              <li>The dashed blue circle is centred on the runway aiming point and has a 5nm radius.</li>
+              <li>The white outer circle is centred on the aircraft and has the radius selected with
+              the Map Range control.</li>
+              <li>The green circles are also centred on the aircraft. The solid green circle is half
+              the radius of the white circle.</li>
+            </ul>
+          </div>
+          <div id="tour-msg-2" class="tour-msg">
+            <h2>Controls</h2>
+            <p>The aircraft is controlled by setting target indicated airspeed and target heading
+            using the buttons on the control bar. The required manoeuvre will be flown
+            automatically.</p>
+
+            <p>Also on the control bar are buttons to extend the gear, select slats and deploy
+            speedbrake.</p>
+
+            <p>As per the QRH, only the blue hydraulics system is available. Thus:</p>
+            <ul>
+              <li>Gear cannot be retracted.</li>
+              <li>Flaps are unavailable; Conf 2 and Conf 3 are identical.</li>
+              <li>Speedbrake is not very effective.</li>
+            </ul>
+          </div>
+          <div id="tour-msg-3" class="tour-msg">
+            <h2>Flight Parameters and Runway</h2>
+            <p>At the top are indicated airspeed, vertical speed and altitude.</p>
+            <p>Below that is the relative position of the touchdown zone:</p>
+            <ul>
+              <li>TDZ QDM is the bearing to the touchdown zone from the aircraft.</li>
+              <li>TDZ Depression is the angle between a horizontal plane and the line from the
+              aircraft to the touchdown zone.</li>
+            </ul>
+            <p>At the bottom are the runway parameters. QFU is the bearing of the centre line of the
+            runway.</p>
+          </div>
+          <div id="tour-msg-4" class="tour-msg">
+            <h2>Aircraft Characteristics</h2>
+            <p>The flight model replicates the glide ratios published in the QRH All Engine
+            Failure checklist for a 60T A320:</p>
+            <ul>
+              <li>The “Speeds” button pops up the characteristic and placard speeds.</li>
+              <li>The “Glide Ratios” button pops up the published glide ratios along with some
+              useful rules of thumb.</li>
+            </ul>
+            <p>The control system allows overspeeds of up to 10kt to be selected.</p>
+          </div>
+          <div id="tour-msg-5" class="tour-msg">
+            <h2>Menu and Play/Pause</h2>
+            <p>The simulation starts in a paused state. Click the play button to start it
+            running. It may be paused again at any time.</p>
+            <p>The menu button on the left, among other things, allows the scenario to be restarted
+            or a new scenario to be selected.</p>
+          </div>
+          <div id="tour-msg-6" class="tour-msg">
+            <h2>Scenario Recommendation</h2>
+            <p>You will be given a choice of scenarios, which, to some extent, build on each other
+            from top to bottom. “Easy from here” with calm winds is recommended for your first
+            attempt.</p>
+          </div>
+
+          <div class="tour-buttons">
+            <div id="dont_show_group" class="dont_show_group hidden">
+              <input type="checkbox" id="dont_show"/>
+              <label for="dont_show" id="dont_show_label">Don't show this
+              again</label>
+            </div>
+            <div class="tour-spacer"> </div>
+            <button id="tour-next" class="button tour-button">Next</button>
+            <button id="tour-finish" class="button tour-button hidden">Finish</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="pause-message" class="message message--paused">
+        Paused
+      </div>
+
+      <div id="Characteristics" class="control-container control-container--info">
+        <div class="label">Characteristics</div>
+        <div class="info-buttons">
+          <button id="info-char-button" class="i-button">Speeds</button><br/>
+          <button id="info-glide-button" class="i-button">Glide Ratios</button>
+        </div>
+      </div>
+
+      <div id="info-char" class="data-panel hidden">
+        <button id="info-char-close" class="data-panel__close-button">
+          <svg version="1.1" height="100%" viewbox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <g  stroke="black" stroke-width="2">
+              <line x1="6" x2="18" y1="18" y2="6"/>
+              <line x1="6" x2="18" y1="6" y2="18"/>
+            </g>
+          </svg>
+        </button>
+        <h2>Characteristic Speeds</h2>
+        <table>
+          <colgroup><col/><col class="speeds"/></colgroup>
+          <tr><th>Min drag [Conf 0]</th><td>205kt</td></tr>
+          <tr><th>S Speed</th><td>185kt</td></tr>
+          <tr><th>V<sub>APP</sub> [Conf 2]</th><td>163kt</td></tr>
+        </table>
+        <h2>Max Speeds</h2>
+        <table>
+          <colgroup><col/><col class="speeds"/></colgroup>
+          <tr><th>Gear</th><td>250kt</td></tr>
+          <tr><th>Conf 1</th><td>230kt</td></tr>
+          <tr><th>Conf 2</th><td>200kt</td></tr>
+          <tr><th>Conf 3</th><td>185kt</td></tr>
+          <tr><th>Conf Full</th><td>177kt</td></tr>
+        </table>
+      </div>
+
+      <div id="info-glide" class="data-panel hidden">
+        <button id="info-glide-close" class="data-panel__close-button">
+          <svg version="1.1" height="100%" viewbox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <g  stroke="black" stroke-width="2">
+              <line x1="6" x2="18" y1="18" y2="6"/>
+              <line x1="6" x2="18" y1="6" y2="18"/>
+            </g>
+          </svg>
+        </button>
+        <h3>Conf 0, 205kt</h3>
+        <ul>
+          <li>Minimum drag speed</li>
+          <li>Still air, <b>1nm</b> costs <b>400ft</b> (<b>3.8°</b> glide)</li>
+          <li>A <b>90°</b> turn costs <b>roughly 1000ft</b>. This is conservative at lower
+          altitudes, and optimistic at higher altitudes. </li>
+        </ul>
+        <h3>Conf 2, Gear down, 163kt</h3>
+        <ul>
+          <li>Recommended AEF approach configuration</li>
+          <li>Still air, <b>1nm</b> costs <b>600ft</b> (<b>5.6°</b> glide)</li>
+          <li><i>Very</i> roughly, each <b>10kt headwind</b> costs <b>50ft per nm</b>
+          (<b>0.5°</b>).</li>
+        </ul>
+        <h3>Note:</h3>
+        <p>Flight model assumes only Blue hydraulics system is available.</p>
+      </div>
+
+      <div class="vbar vbar--left">
+        <div id="MenuBar" class="button-bar">
+          <button id="menu-button" class="lb-button lb-button--menu">
+            <svg version="1.1" viewbox="0 0 24 18"
+                 xmlns="http://www.w3.org/2000/svg">
+              <g  stroke="black" stroke-width="2" stroke-linecap="round">
+                <line x1="0" x2="24" y1="3" y2="3"/>
+                <line x1="0" x2="24" y1="9" y2="9"/>
+                <line x1="0" x2="24" y1="15" y2="15"/>
+              </g>
+            </svg>
+          </button>
+          <div class="lb-spacer"> </div>
+          <button id="play-button" class="lb-button lb-button--play">
+            <svg version="1.1" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="0,0 0,20 20,10" stroke="green" fill="green"/>
+            </svg>
+            <!-- Play -->
+          </button>
+          <button id="pause-button" class="lb-button lb-button--pause">
+            <svg version="1.1" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <line x1="5" y1="0" x2="5" y2="20" stroke="black" stroke-width="4"/>
+              <line x1="15" y1="0" x2="15" y2="20" stroke="black" stroke-width="4"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="ParamView" class="pv-container">
+          <div>
+            <div class="pv-group">
+              <div class="pv-label">IAS</div>
+              <div id="pv-ias" class="pv-value pv-value--ias">195 kt</div>
+            </div>
+            <div class="pv-group">
+              <div class="pv-label">Vertical Speed</div>
+              <div id="pv-vs" class="pv-value pv-value--vs">0 fpm</div>
+            </div>
+            <div class="pv-group">
+              <div class="pv-label">Altitude</div>
+              <div id="pv-alt" class="pv-value pv-value--altitude">10000 ft</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="pv-group">
+              <div class="pv-label">TDZ Distance</div>
+              <div id="pv-tdz-dist" class="pv-value pv-value--distance">0 nm</div>
+            </div>
+            <div class="pv-group">
+              <div class="pv-label">TDZ QDM</div>
+              <div id="pv-tdz-qdm" class="pv-value pv-value--bearing">000°</div>
+            </div>
+            <div class="pv-group">
+              <div class="pv-label">TDZ Depression</div>
+              <div id="pv-tdz-dep" class="pv-value pv-value--depression">0°</div>
+            </div>
+          </div>
+        </div>
+        <div id="RunwayInfo">
+          <div class="pv-group">
+            <div class="pv-label">Runway QFU</div>
+            <div id="pv-rwy-qfu" class="pv-value pv-value--qfu">000°</div>
+            <div class="pv-label">Runway Elevation</div>
+            <div id="pv-rwy-elev" class="pv-value pv-value--elev">0ft</div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="ControlBar" class="hbar hbar--controls">
+        <div id="cb-speed-group" class="cb-group cb-group--spd">
+          <button id="cb-spd-10" class="cb-button">-10</button>
+          <button id="cb-spd-1" class="cb-button">-1</button>
+          <div id="cb-spd-disp" class="cb-value cb-value--spd">0kt</div>
+          <button id="cb-spd+1" class="cb-button">+1</button>
+          <button id="cb-spd+10" class="cb-button">+10</button>
+        </div>
+        <div id="cb-heading-group" class="cb-group cb-group--hdg">
+          <button id="cb-hdg-45" class="cb-button">-45</button>
+          <button id="cb-hdg-10" class="cb-button">-10</button>
+          <button id="cb-hdg-1" class="cb-button">-1</button>
+          <div id="cb-hdg-disp" class="cb-value cb-value--hdg">000°</div>
+          <button id="cb-hdg+1" class="cb-button">+1</button>
+          <button id="cb-hdg+10" class="cb-button">+10</button>
+          <button id="cb-hdg+45" class="cb-button">+45</button>
+        </div>
+        <button id="cb-gear" class="cb-button cb-gearbutton">Gear</button>
+        <div id="cb-conf-group" class="cb-group cb-group--conf">
+          <button id="cb-flap-" class="cb-button">-</button>
+          <div id="cb-flap-disp" class="cb-value cb-value--conf">Flap 0</div>
+          <button id="cb-flap+" class="cb-button">+</button>
+        </div>
+        <div id="cb-sb-group" class="cb-group cb-group--speedbrake">
+          <button id="cb-sb-" class="cb-button">-</button>
+          <div id="cb-sb-disp" class="cb-value cb-value--spd">SB 0</div>
+          <button id="cb-sb+" class="cb-button">+</button>
+        </div>
+      </div>
+
+
+      <div id="ndview-range-control" class="control-container control-container--range">
+        <div class="nd-label">Map Range</div>
+        <div class="ndview-range-group">
+          <input type="radio" id="ndview-10nm" name="range" value="10"/>
+          <label for="ndview-10nm">10nm</label><br/>
+          <input type="radio" id="ndview-20nm" name="range" value="20" checked="checked"/>
+          <label for="ndview-20nm">20nm</label>
+        </div>
+      </div>
+
+      <div id="ndview" style="background-color: black;">
+        <svg version="1.1" viewbox="-105 -105 210 210" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="clip">
+              <circle cx="0" cy="0" r="99"/>
+            </clipPath>
+            <marker id="arrowhead" markerwidth="3" markerheight="5" refX="1.5" refY="0">
+              <polygon points="0 0, 1.5 5, 3 0" fill="lime"/>
+            </marker>
+            </defs>
+          <!-- runway -->
+          <g clip-path="url(#clip)">
+          <g id="ndview-runway" transform="translate(0, -25)"
+             stroke="cyan" stroke-width="0.5" fill="none">
+            <g id="ndview-breadcrumbs" stroke="yellow"></g>
+            <g id="ndview-runway-inner">
+              <rect x="-0.5" y="-7.2" height="8" width="1" fill="none"/>
+              <line x1="0" x2="0" y1="0.8" y2="200" stroke-dasharray="1 2"/>
+              <circle r="25" stroke-dasharray="1 2"/>
+              <circle r="0.81" stroke="red"/>
+            </g>
+          </g>
+          </g>
+          <!-- aircraft symbol -->
+          <line class="ac-symbol" x1="-4" y1="0" x2="4" y2="0"/>
+          <line class="ac-symbol" x1="-2" y1="4" x2="2" y2="4"/>
+          <line class="ac-symbol" x1="0" y1="-3" x2="0" y2="5"/>
+          <!-- track diamond and heading index-->
+          <g id="ndview-hol">
+            <!-- range rings -->
+            <circle class="range-ring range-ring--outer" cx="0" cy="0" r="100"/>
+            <circle class="range-ring range-ring--minor" cx="0" cy="0" r="75"/>
+            <circle class="range-ring" cx="0" cy="0" r="50"/>
+            <circle class="range-ring range-ring--minor" cx="0" cy="0" r="25"/>
+            <!-- Heading index and track diamond-->
+            <line x1="0" x2="0" y1="-100" y2="-92" stroke="yellow" stroke-width="2"/>
+            <polygon id="ndview-track-diamond" points="0,-99 2,-96 0,-93, -2,-96"
+                     stroke="lime" fill="none" stroke-width="1"/>
+            <!-- heading ticks and bug-->
+            <g id="ndview-ticks" stroke="white" fill="none" stroke-width="0.5">
+              <polygon id="hdg_bug" points="0,-99 -2,-105 2,-105" stroke="cyan" fill="cyan" stroke-width="1"/>
+            </g>
+            <!-- wind readout -->
+            <text id="ndview-windtext" x="-88" y="-88" class="ndview-windtext">000/00</text>
+            <line id="ndview-windarrow" x1="-92" x2="-92" y1="-86" y2="-79"
+                  transform-origin="-92 -80"
+                  stroke="lime" fill="lime" stroke-width="1"
+                  marker-end="url(#arrowhead)"/>
+          </g>
+          <!-- landed message -->
+          <text id="ndview-landedmsg" x="0" y="-80" class="ndview-landedmsg">Landed</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Dialogs -->
+
+    <dialog class="dialog dialog--with-close" id="main_menu">
+      <form method="dialog">
+        <button class="dialog__close-button">
+          <svg version="1.1"  height="100%" viewbox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <g  stroke="black" stroke-width="2">
+              <line x1="6" x2="18" y1="18" y2="6"/>
+              <line x1="6" x2="18" y1="6" y2="18"/>
+            </g>
+          </svg>
+        </button>
+        <h1 class="dialog-title dialog-title--white">Main Menu</h1>
+        <div id="mm-version-warning" class="dialog__warning hidden">
+          A new version is available. Choose “Reload App” to update.
+        </div>
+        <button id="mm-restart-current" class="dialog__choice-button">Restart Current Scenario</button>
+        <button id="mm-new-scenario" class="dialog__choice-button">New Scenario</button>
+        <button id="mm-reload" class="dialog__choice-button">Reload App</button>
+        <button id="mm-background-info" class="dialog__choice-button">
+        Background Information</button>
+      </form>
+    </dialog>
+
+    <dialog class="dialog dialog--with-close" id="scenarios">
+        <button id="scenarios-close-button" class="dialog__close-button">
+          <svg version="1.1"  height="100%" viewbox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <g  stroke="black" stroke-width="2">
+              <line x1="6" x2="18" y1="18" y2="6"/>
+              <line x1="6" x2="18" y1="6" y2="18"/>
+            </g>
+          </svg>
+        </button>
+      <h1 class="dialog-title dialog-title--white">Choose Scenario</h1>
+      <div id="scenario-list">
+      </div>
+    </dialog>
+
+    <dialog class="dialog dialog--with-close" id="winds">
+        <button id="winds-close-button" class="dialog__close-button">
+          <svg version="1.1"  height="100%" viewbox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <g  stroke="black" stroke-width="2">
+              <line x1="6" x2="18" y1="18" y2="6"/>
+              <line x1="6" x2="18" y1="6" y2="18"/>
+            </g>
+          </svg>
+        </button>
+      <h1 class="dialog-title dialog-title--white">Choose Surface Wind</h1>
+      <div id="wind-list">
+      </div>
+    </dialog>
+
+
+  </body>
+</html>

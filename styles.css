@@ -1,0 +1,585 @@
+:root {
+    --border-radius: 0.75rem;
+    --main-panel-height: 51rem;
+    --small-button-height: 3rem;
+    --small-button-width: 3rem;
+    --large-button-height: 4rem;
+    --large-button-width: 4.5rem;
+    --close-button-height: 2.25rem;
+    --button-border: 0.1rem solid;
+    --button-margin: 0.25rem;
+    --group-margin: 0.5rem;
+    --group-border: 0.2rem solid;
+    --text-small: 1rem;
+    --text-medium: 1.2rem;
+    --text-large: 1.5rem;
+    --text-huge: 2rem;
+    --text-extra-huge: 3rem;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    touch-action: manipulation;
+}
+
+
+html, body {
+    font-family: sans-serif;
+    background-color: black;
+}
+
+/* measure is a screen filling div needed to correctly measure
+   viewport on ipad*/
+
+.measure {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: -webkit-fill-available;
+    width: 100vw;
+    background-color: black;
+}
+
+/********************
+ * universal styles *
+ ********************/
+
+.hidden {
+    display: none !important;
+}
+
+.blurred {
+    filter: blur(0.5rem) opacity(70%);
+}
+
+.yellowback {
+    background-color: yellow !important;
+}
+
+button {
+    display: inline-block;
+    font-size: var(--text-small);
+    text-align: center;
+    border: var(--button-border) gray;
+    border-radius: var(--border-radius);
+    margin: 0;
+    padding: 0;
+    color: black;
+    outline: none;
+}
+
+
+table {
+    border: var(--group-border) gray;
+    font-size: var(--text-medium);
+    border-collapse: collapse;
+    margin: calc(var(--group-margin) * 2) var(--group-margin);
+    width: 100%;
+}
+
+
+th, td {
+    border: var(--button-border) gray;
+    text-align: center;
+}
+
+
+#characteristics td, #characteristics th {
+    border: var(--button-border) gray;
+    text-align: center;
+}
+
+
+ul {
+    margin: 0.5rem;
+    padding-left: 1rem;
+}
+
+h1 { font-size: var(--text-huge); }
+h2 { font-size: var(--text-large); }
+h3 { font-size: var(--text-medium); }
+
+/******************
+ * main structure *
+ ******************/
+
+.grid {
+    position: relative;
+    display: none;
+    grid-template-columns: 17rem auto 6rem;
+    grid-template-rows: auto 5rem;
+    column-gap: 0;
+    row-gap: 0.5rem;
+    width: 80rem;
+    margin: auto;
+    height: 56rem;
+}
+
+
+.vbar {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.vbar--left {
+    grid-row: 1;
+    grid-column: 1;
+    height: var(--main-panel-height);
+}
+
+
+.control-container {
+    grid-row: 1;
+    grid-column: 2 / 4;
+    justify-self: right;
+    z-index: 10;
+    margin: var(--group-margin);
+    background-color: white;
+    border-radius: var(--border-radius);
+    width: 10rem;
+    padding: var(--button-margin) calc(var(--button-margin) * 2);
+}
+
+
+.control-container--info {
+    align-self: start;
+}
+
+
+.control-container--range {
+    align-self: end;
+}
+
+
+.hbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--group-margin);
+    margin: var(--group-margin);
+}
+
+
+.hbar--controls {
+   grid-row: 2;
+   grid-column: 1 / 4;
+}
+
+
+#ndview {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+    height: var(--main-panel-height);
+}
+
+/******************
+ * Paramater View *
+ ******************/
+
+.pv-container {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.pv-group {
+    margin: var(--group-margin);
+    padding: var(--button-margin);
+    border: var(--group-border) white;
+    border-radius: var(--border-radius);
+    min-height: var(--large-button-height);
+}
+
+
+.pv-label {
+    color: white;
+    margin-left: calc(var(--button-margin) * 2);
+}
+
+
+.pv-value {
+    font-size: 1.5rem;
+    text-align: center;
+    color: lime;
+}
+
+
+.pv-value--qfu, .pv-value--elev {
+    color: cyan;
+}
+
+/***************
+ * Control Bar *
+ ***************/
+
+.cb-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: white;
+    border-radius: var(--border-radius);
+    height: var(--large-button-height);
+    padding: 0 var(--button-margin);
+}
+
+.cb-button {
+    color: black;
+    height: var(--small-button-height);
+    width: var(--small-button-width);
+    margin: 0 var(--button-margin);
+
+}
+
+.cb-value {
+    text-align: center;
+    width: var(--large-button-width);
+    font-size: var(--text-medium);
+    font-weight: bold;
+}
+
+.cb-gearbutton {
+    width: var(--large-button-width);
+    height: var(--large-button-height);
+    font-size: var(--text-medium);
+    font-weight: bold;
+    margin: 0 var(--button-margin);
+}
+
+.cb-gearbutton--deploying {
+    color: red;
+}
+
+.cb-gearbutton--deployed {
+    color: #00c000;
+}
+
+
+/*******************************
+ * Menu and play/pause buttons *
+ *******************************/
+
+.button-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: white;
+    border-radius: var(--border-radius);
+    height: var(--large-button-height);
+    padding: 0 var(--button-margin);
+    margin: var(--group-margin);
+}
+
+
+.lb-button {
+    height: var(--small-button-height);
+    width: var(--small-button-width);
+    margin: 0 var(--button-margin);
+}
+
+
+.lb-button--menu {
+    width: var(--large-button-width);
+}
+
+
+.lb-spacer {
+    flex-grow: 2;
+}
+
+
+.lb-button--play svg, .lb-button--pause svg {
+    width: 30%;
+    margin-top: 0.3rem;
+}
+
+
+.lb-button--menu svg {
+    width: 50%;
+    margin-top: 0.3rem;
+}
+
+/***********
+ * ND view *
+ ***********/
+
+#ndview svg {
+    background-color: black;
+    height: 100%;
+}
+
+
+.range-ring {
+    stroke: lime;
+    stroke-width: 0.25;
+    fill: none;
+}
+
+
+.range-ring--outer {
+    stroke: white;
+}
+
+
+.range-ring--minor {
+    stroke-dasharray: 1 2;
+    stroke-width: 0.25;
+}
+
+
+.ac-symbol {
+    stroke: yellow;
+    stroke-width: 1;
+}
+
+
+.ndview-ticktext {
+    stroke: white;
+    fill: white;
+    font-family: sans-serif;
+    font-size: 5px;
+}
+
+.ndview-windtext {
+    fill: lime;
+    font-family: sans-serif;
+    font-size: 7px;
+    text-anchor: middle;
+    font-weight: normal;
+}
+
+.ndview-landedmsg {
+    fill: lime;
+    font-family: sans-serif;
+    font-size: 12px;
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+.ndview-range-group {
+    position: relative;
+    line-height: 2;
+    text-align: center;
+    font-size: var(--text-medium);
+}
+
+
+input[type=radio] {
+    height: var(--text-medium);
+    width: var(--text-medium);
+}
+
+
+.message--paused {
+    position: relative;
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+    translate: 0 6rem;
+    background-color: black;
+    color: white;
+    font-size: var(--text-extra-huge);
+    font-weight: bold;
+    z-index: 10;
+    height: 3rem;
+    padding: 1rem;
+}
+
+/***********************
+ * Information buttons *
+ ***********************/
+
+.info-buttons {
+    text-align: center;
+    margin: var(--button-margin);
+}
+
+.i-button {
+    width: calc(var(--small-button-width) * 3);
+    height: var(--small-button-height);
+    margin: var(--button-margin);
+}
+
+/***************
+ * Data panels *
+ ***************/
+
+.data-panel {
+    /* position: relative; */
+    grid-row: 1;
+    grid-column: 2 / 4;
+    align-self: start;
+    justify-self: right;
+    width: 20rem;
+    z-index: 15;
+    background-color: white;
+    color: black;
+    padding: var(--small-button-height) var(--close-button-height) var(--close-button-height);
+    border-radius: var(--border-radius);
+    margin: 0.1rem;
+    min-height: 6rem;
+    line-height: 1.5;
+    font-size: var(--text-medium);
+}
+
+
+.data-panel__close-button {
+    position: absolute;
+    width: var(--close-button-height);
+    height: var(--close-button-height);
+    right: calc(var(--button-margin) * 2);
+    top: calc(var(--button-margin) * 2);
+}
+
+
+.speeds {
+    width: 6em;
+}
+
+/***********
+ * Dialogs *
+ ***********/
+
+.dialog::backdrop {
+    backdrop-filter: blur(0.3125rem);
+    -webkit-backdrop-filter: blur(0.3125rem);
+}
+
+
+.dialog {
+    margin: auto;
+    min-width: 30rem;
+    padding: var(--group-margin);
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    border: var(--group-border) white;
+}
+
+
+.dialog--with-close {
+    padding-top: calc(var(--close-button-height) + var(--group-margin));
+    translate: 0 calc(var(--close-button-height) * -2);
+}
+
+
+.dialog__close-button {
+    position: absolute;
+    width: var(--close-button-height);
+    height: var(--close-button-height);
+    right: calc(var(--button-margin) * 2);
+    top: calc(var(--button-margin) * 2);
+}
+
+
+.dialog__choice-button {
+    display: block;
+    width: 100%;
+    height: var(--large-button-height);
+    font-size: var(--text-medium);
+    margin: var(--group-margin) auto;
+    color: black;
+}
+
+
+.dialog-title {
+    font-size: var(--text-huge);
+    text-align: center;
+    margin-bottom: var(--text-extra-huge);
+}
+
+
+.dialog-title--white {
+    color: white;
+    background-color: black;
+}
+
+
+.dialog__warning {
+    background-color: white;
+    font-size: var(--text-medium);
+    border: var(--group-border) blue;
+    padding: var(--text-medium);
+    margin: var(--text-medium);
+    border-radius: var(--border-radius);
+}
+
+/********
+ * Tour *
+ ********/
+
+.tour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    height: 56rem;
+    width: 80rem;
+    margin: auto;
+    z-index: 20;
+}
+
+.tour--bottom-left {
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.tour-msgbox {
+    background-color: white;
+    width: 25rem;
+    font-size: var(--text-medium);
+    margin: var(--group-margin);
+    padding: var(--group-margin);
+    border-radius: var(--border-radius);
+}
+
+
+.tour-msg {
+    margin: var(--group-margin);
+}
+
+.tour-buttons {
+    margin: 1rem var(--group-margin) var(--group-margin);
+    display: flex;
+    text-align: right;
+}
+
+.tour-button {
+    color: black;
+    height: var(--small-button-height);
+    width: var(--large-button-width);
+    margin: 0 var(--button-margin);
+}
+
+.tour-spacer {
+    flex-grow: 2;
+    display: inline-block;
+}
+
+.dont_show_group {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.tour-msg {
+    padding: calc(var(--group-margin) * 2);
+}
+
+.tour-msg p {
+    margin: calc(var(--group-margin) * 2) 0;
+}
+
+.tour-msg h2 {
+    text-align: center;
+    margin: var(--group-margin) var(--group-margin) 1.25rem;
+
+}

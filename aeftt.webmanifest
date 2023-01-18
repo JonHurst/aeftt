@@ -1,0 +1,26 @@
+{
+  "name": "All Engine Failure Trainer",
+  "short_name": "AEF Trainer",
+  "start_url": "./aeftt.html",
+    "display": "standalone",
+    "orientation": "landscape",
+  "background_color": "#000",
+  "description": "A tool for experimenting with strategies for All Engines Failed navigation and energy management",
+    "icons": [
+        {
+        "src": "icon.svg",
+        "sizes": "any",
+        "type": "image/svg"
+    },
+        {
+        "src": "icon-180x180.png",
+        "sizes": "180x180",
+        "type": "image/png"
+    },
+        {
+        "src": "icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }
+    ]
+}
