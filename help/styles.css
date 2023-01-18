@@ -32,3 +32,15 @@ sub {
     color: red;
     font-weight: bold;
 }
+
+.paypal__outer {
+    text-align: center;
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.paypal__inner {
+    margin: 2rem;
+}
