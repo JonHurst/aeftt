@@ -65,11 +65,11 @@ const scenarios = [
         title: "Too High, Too Fast",
         wind: [
             [0, 0, "Calm"], //calm
-            [0.0000, -5.1444, "10kt headwind"], //northerly, 10kt
-            [-5.1444, -0.0000, "10kt crosswind from right"], //easterly, 10kt
-            [5.1444, -0.0000, "10kt crosswind from left"], //easterly, 10kt
-            [-5.4565, -5.4565, "15kt quartering from right"], //15kt north-easterly
-            [0, -10.2889, "20kt headwind"], // northerly, 20kt
+            [-3.6377, -3.6377, "10kt headwind"], //north-easterly, 10kt
+            [-3.6377, 3.6377, "10kt crosswind from right"], //south-easterly, 10kt
+            [3.6377, -3.6377, "10kt crosswind from left"], //nowth-westerly, 10kt
+            [-7.7167, -0.0000, "15kt quartering from right"], //15kt easterly
+            [-7.2753, -7.2753, "20kt headwind"], // north-easterly, 20kt
         ],
     },
     {
@@ -125,11 +125,10 @@ const scenarios = [
         title: "Stretch",
         wind: [
             [0, 0, "Calm"], //calm
-            [0.0000, -5.1444, "10kt headwind"], //northerly, 10kt
-            [-5.1444, -0.0000, "10kt crosswind from right"], //easterly, 10kt
-            [5.1444, -0.0000, "10kt crosswind from left"], //easterly, 10kt
-            [-5.4565, -5.4565, "15kt quartering from right"], //15kt north-easterly
-            [0, -10.2889, "20kt headwind"], // northerly, 20kt
+            [-3.6377, -3.6377, "10kt headwind"], //north-easterly, 10kt
+            [-3.6377, 3.6377, "10kt crosswind from right"], //south-easterly, 10kt
+            [3.6377, -3.6377, "10kt crosswind from left"], //nowth-westerly, 10kt
+            [-7.7167, -0.0000, "15kt quartering from right"], //15kt easterly
         ],
     },
     {
@@ -142,11 +141,11 @@ const scenarios = [
         title: "Absorb",
         wind: [
             [0, 0, "Calm"], //calm
-            [0.0000, -5.1444, "10kt headwind"], //northerly, 10kt
-            [-5.1444, -0.0000, "10kt crosswind from right"], //easterly, 10kt
-            [5.1444, -0.0000, "10kt crosswind from left"], //easterly, 10kt
-            [-5.4565, -5.4565, "15kt quartering from right"], //15kt north-easterly
-            [0, -10.2889, "20kt headwind"], // northerly, 20kt
+            [-3.6377, -3.6377, "10kt headwind"], //north-easterly, 10kt
+            [-3.6377, 3.6377, "10kt crosswind from right"], //south-easterly, 10kt
+            [3.6377, -3.6377, "10kt crosswind from left"], //nowth-westerly, 10kt
+            [-7.7167, -0.0000, "15kt quartering from right"], //15kt easterly
+            [-7.2753, -7.2753, "20kt headwind"], // north-easterly, 20kt
         ],
     },
 
