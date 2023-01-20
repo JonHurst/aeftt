@@ -489,6 +489,11 @@ input[type=radio] {
 }
 
 
+.dialog__choice-button--highlight {
+    background-color: yellow;
+}
+
+
 .dialog-title {
     font-size: var(--text-huge);
     text-align: center;
