@@ -314,6 +314,7 @@ h3 { font-size: var(--text-medium); }
 #ndview svg {
     background-color: black;
     height: 100%;
+    text-rendering: geometricPrecision;
 }
 
 
