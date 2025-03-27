@@ -141,8 +141,8 @@ class Controller {
                 'https://hursts.org.uk/aeftt/help/background.html'),
             "mm-bug-report": () => window.open(
                 'https://github.com/JonHurst/aeftt/issues'),
-            "mm-support": () => window.open(
-                'https://hursts.org.uk/aeftt/help/support.html'),
+            // "mm-support": () => window.open(
+            //     'https://hursts.org.uk/aeftt/help/support.html'),
 
             "info-char-button": () => $("info-char").classList.remove("hidden"),
             "info-char-close": () => $("info-char").classList.add("hidden"),
