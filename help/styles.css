@@ -33,14 +33,19 @@ sub {
     font-weight: bold;
 }
 
-.paypal__outer {
-    text-align: center;
-    border: 0.1rem solid black;
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 2rem;
-}
-
-.paypal__inner {
-    margin: 2rem;
+.top-bar {
+    position: sticky;
+    text-align: right;
+    top: 0;
+    border-bottom: 1px solid gray;
+    padding: 0.5rem 0;
+    background-color: white;
+    button {
+        font-size: 1.1rem;
+        padding: 0.25rem 0.5rem;
+        color: black;
+        background-color: lightgray;
+        border: 1px solid gray;
+        border-radius: 0.2rem;
+    };
 }

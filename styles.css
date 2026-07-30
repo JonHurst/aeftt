@@ -518,6 +518,11 @@ input[type=radio] {
     border-radius: var(--border-radius);
 }
 
+.version {
+    color: white;
+    text-align: right;
+}
+
 /********
  * Tour *
  ********/

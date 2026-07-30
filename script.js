@@ -3,23 +3,10 @@
 import {Controller} from './modules/controller.js';
 
 
-function register_service_worker() {
-    if (!'serviceWorker' in navigator) return;
-    navigator.serviceWorker.register('sw.js').then(
-        function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ',
-                        registration.scope);
-        },
-        function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
-}
-
 let controller;
 
 function main() {
+    navigator?.serviceWorker?.register('sw.js');
     window.addEventListener("resize", onresize);
     onresize();
     controller = new Controller();
@@ -42,7 +29,6 @@ function main() {
         tour_step(0);
         document.getElementById("grid").style.display = "grid";
     }
-    register_service_worker();
 }
 
 

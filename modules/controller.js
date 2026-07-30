@@ -5,8 +5,6 @@ import {scenarios} from '../scenarios.js';
 import {NDView} from './ndview.js';
 import {ParamView} from './paramview.js';
 
-const CURRENT_VERSION = "0.9";
-
 const $ = id => document.getElementById(id);
 const zpad3 = v => ('00' + v).slice(-3);
 const [X, Y, Z] = [0, 1, 2];
@@ -131,18 +129,12 @@ class Controller {
             },
 
             "menu-button": () => {
-                check_version();
                 $("main_menu").showModal();
             },
             "mm-restart-current": () => this.restart_scenario(),
             "mm-new-scenario": () => this.new_scenario(),
-            "mm-reload": () => window.location.reload(),
             "mm-background-info": () => window.open(
-                'https://hursts.org.uk/aeftt/help/background.html'),
-            "mm-bug-report": () => window.open(
-                'https://github.com/JonHurst/aeftt/issues'),
-            // "mm-support": () => window.open(
-            //     'https://hursts.org.uk/aeftt/help/support.html'),
+                'help/background.html'),
 
             "info-char-button": () => $("info-char").classList.remove("hidden"),
             "info-char-close": () => $("info-char").classList.add("hidden"),
@@ -260,20 +252,6 @@ function change_sb(fm, inc) {
 
 function flash_control_bar(bar) {
     bar.animate({backgroundColor: ["yellow", "white"]}, 1000);
-}
-
-
-function check_version() {
-    window.fetch("version.json")
-        .then((res) => {
-            if(!res.ok) throw Error(`Error: ${res.status}`);
-            return res.json();
-        })
-        .then((json) => {
-            if(json.version !== CURRENT_VERSION)
-                $("mm-version-warning").classList.remove("hidden");
-        })
-        .catch(err => console.log(err));
 }
 
 
