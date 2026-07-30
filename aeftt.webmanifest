@@ -8,22 +8,22 @@
     "description": "A tool for experimenting with strategies for All Engines Failed navigation and energy management",
     "icons": [
         {
-            "src": "icon.svg",
+            "src": "icon.1.svg",
             "sizes": "any",
             "type": "image/svg",
-            "purpose": "maskable all"
+            "purpose": "maskable any"
         },
         {
-            "src": "icon-180x180.png",
+            "src": "icon-180.1.png",
             "sizes": "180x180",
             "type": "image/png",
-            "purpose": "maskable all"
+            "purpose": "maskable any"
         },
         {
-            "src": "icon-192.png",
+            "src": "icon-192.1.png",
             "sizes": "192x192",
             "type": "image/png",
-            "purpose": "maskable all"
+            "purpose": "maskable any"
         }
     ]
 }
