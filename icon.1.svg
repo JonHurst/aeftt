@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg2"
+   viewBox="0 0 192 192"
+   version="1.1"
+   width="192"
+   height="192"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(0,-812.36)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:76.46;stroke-linecap:round"
+       id="rect1"
+       width="192"
+       height="192"
+       x="0"
+       y="812.35999" />
+    <path
+       id="path2985"
+       style="fill:#ccffcc;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 100.62631,916.38593 c 0,0 -12.109818,9.73639 -14.028318,5.10065 -1.9185,-4.63589 10.330459,-12.89954 7.000627,-19.39063 -3.330023,-6.49108 -23.823121,5.18993 -28.117902,-0.74147 -4.294687,-5.93168 25.762515,-24.02067 25.762515,-24.02067 0,0 2.004643,-18.46082 8.207762,-18.46082 6.202836,0 7.424696,19.24627 7.424696,19.24627 0,0 28.08038,15.24353 25.87838,20.65379 -2.20205,5.40979 -24.53876,-4.07676 -26.8609,2.86412 -2.32191,6.9408 9.33987,17.28265 7.91334,20.52036 -1.42648,3.23799 -13.1802,-5.77165 -13.1802,-5.77165 z" />
+    <path
+       id="path3761"
+       d="m 100.13244,900.16416 c -0.589462,-0.0603 -1.308567,5.16048 -1.35368,7.30834 -0.04511,2.14815 1.036987,5.79729 1.70661,5.72748 0.66962,-0.0697 1.16653,-3.7357 1.21317,-5.62775 0.0467,-1.8921 -0.97663,-7.34824 -1.5661,-7.40807 z"
+       style="fill:#000000;stroke-width:0.474876" />
+    <path
+       id="path2987"
+       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-dasharray:11.9999, 11.9999;stroke-dashoffset:0"
+       d="m 100.45061,926.48411 c 0,0 4.22236,21.11205 -10.679969,29.55678 -14.902332,8.44473 -30.798579,7.948 -30.798579,7.948" />
+  </g>
+  <metadata
+     id="metadata1">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

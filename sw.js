@@ -1,5 +1,5 @@
 const META = {
-    "VERSION": "1.0.3",
+    "VERSION": "1.0.4",
     "MANIFEST": [
         "aeftt.html",
         "styles.css",
@@ -9,8 +9,9 @@ const META = {
         "modules/ndview.js",
         "modules/paramview.js",
         "modules/controller.js",
-        "icon.svg",
-        "icon-180x180.png",
+        "icon.1.svg",
+        "icon-180.1.png",
+        "icon-192.1.png",
         "aeftt.webmanifest",
         "help/background.html",
         "help/drag-curves.png",
